@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SkillsUSA Robotics & Automation | Program Hub</title>
+  <meta name="description" content="SkillsUSA Robotics & Automation Technology - season hub, timeline, teams, and resources." />
+  <style>
+    :root{
+      --bg0:#0b1020;
+      --bg1:#0f1630;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.08);
+      --stroke:rgba(255,255,255,.12);
+      --text:#e9eefc;
+      --muted:rgba(233,238,252,.72);
+      --muted2:rgba(233,238,252,.55);
+      --accent:#7aa7ff;
+      --accent2:#6ef3c5;
+      --warn:#ffd37a;
+      --radius:18px;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(122,167,255,.28), transparent 60%),
+        radial-gradient(1000px 700px at 85% 15%, rgba(110,243,197,.18), transparent 55%),
+        radial-gradient(1000px 900px at 50% 90%, rgba(255,211,122,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1150px;margin:0 auto;padding:28px 18px 60px}
+    header{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+      padding:22px;
+      border:1px solid var(--stroke);
+      border-radius:calc(var(--radius) + 8px);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    header:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background:
+        radial-gradient(700px 220px at 25% 0%, rgba(122,167,255,.22), transparent 60%),
+        radial-gradient(520px 240px at 70% 10%, rgba(110,243,197,.16), transparent 55%);
+      pointer-events:none;
+      filter:blur(0px);
+    }
+    .hero{position:relative;z-index:1;max-width:760px}
+    .eyebrow{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:8px 12px;border:1px solid var(--stroke);
+      border-radius:999px;background:rgba(0,0,0,.18);
+      color:var(--muted);font-size:13px;
+    }
+    .title{margin:14px 0 10px;font-size:34px;line-height:1.15;letter-spacing:-.02em}
+    .subtitle{margin:0;color:var(--muted);font-size:15.5px;line-height:1.5}
+    .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:11px 14px;border-radius:12px;border:1px solid var(--stroke);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      font-weight:600;font-size:14px;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18)}
+    .btnPrimary{
+      background:linear-gradient(180deg, rgba(122,167,255,.28), rgba(122,167,255,.14));
+      border-color:rgba(122,167,255,.42);
+    }
+    .meta{
+      position:relative;z-index:1;
+      display:grid;gap:10px;
+      min-width:320px;max-width:360px;
+    }
+    .pillGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .pill{
+      border:1px solid var(--stroke);
+      border-radius:14px;
+      background:rgba(0,0,0,.16);
+      padding:12px;
+    }
+    .pill .k{color:var(--muted2);font-size:12px}
+    .pill .v{margin-top:6px;font-size:15px;font-weight:700}
+    .pill .v code{font-family:var(--mono);font-size:13px;color:rgba(233,238,252,.85)}
+    .note{
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,211,122,.08);
+      border-radius:14px;
+      padding:12px;
+      color:rgba(255,240,208,.95);
+      font-size:13px;line-height:1.4;
+    }
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      header{flex-direction:column}
+      .meta{max-width:none;min-width:unset}
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+      box-shadow: 0 12px 30px rgba(0,0,0,.30);
+      overflow:hidden;
+    }
+    .cardHead{
+      padding:16px 18px 12px;
+      display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.10);
+    }
+    .cardHead h2{margin:0;font-size:16px;letter-spacing:-.01em}
+    .cardHead p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.4}
+    .cardBody{padding:16px 18px}
+    .bento{
+      display:grid;grid-template-columns:1fr 1fr;gap:12px;
+    }
+    @media (max-width: 640px){ .bento{grid-template-columns:1fr} }
+    .tile{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      background:rgba(0,0,0,.14);
+      padding:14px;
+    }
+    .tile h3{margin:0 0 8px;font-size:14px}
+    .tile p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    .tagRow{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+    .tag{
+      display:inline-flex;align-items:center;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      font-size:12px;color:rgba(233,238,252,.80);
+      font-family:var(--mono);
+    }
+    .timeline{
+      display:grid;gap:10px;
+    }
+    .mile{
+      display:grid;grid-template-columns: 140px 1fr;
+      gap:12px;align-items:start;
+      padding:12px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.14);
+    }
+    .mile .date{
+      font-family:var(--mono);
+      color:rgba(233,238,252,.80);
+      font-size:12px;
+      padding:8px 10px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      text-align:center;
+      line-height:1.35;
+    }
+    .mile .txt h4{margin:0 0 4px;font-size:14px}
+    .mile .txt p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    footer{
+      margin-top:18px;
+      display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;
+      color:var(--muted2);font-size:12.5px;
+    }
+    footer code{font-family:var(--mono);color:rgba(233,238,252,.78)}
+    .smallLink{border:1px solid rgba(255,255,255,.12);padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="hero">
+        <div class="eyebrow">SkillsUSA Robotics & Automation Technology | Season Hub</div>
+        <h1 class="title">Robotics & Automation Command Center</h1>
+        <p class="subtitle">
+          One public timeline, one source of truth. Teams, kits, tracks, weekly milestones, and deliverables leading to competition day.
+        </p>
+        <div class="ctaRow">
+          <a class="btn btnPrimary" href="#" id="interestFormLink">Student Interest Form (link soon)</a>
+          <a class="btn" href="#timeline">Timeline</a>
+          <a class="btn" href="#tracks">Competition Tracks</a>
+          <a class="btn" href="#kits">Kit Ecosystems</a>
+        </div>
+      </div>
+
+      <div class="meta">
+        <div class="pillGrid">
+          <div class="pill">
+            <div class="k">Competition target</div>
+            <div class="v"><code>Apr 12</code> (update if needed)</div>
+          </div>
+          <div class="pill">
+            <div class="k">Program mode</div>
+            <div class="v">Build + automate + document</div>
+          </div>
+          <div class="pill">
+            <div class="k">Weekly updates</div>
+            <div class="v">Posted every Friday</div>
+          </div>
+          <div class="pill">
+            <div class="k">Repo</div>
+            <div class="v"><code>GitHub Pages</code></div>
+          </div>
+        </div>
+        <div class="note">
+          Admin/judges view: this page stays clean. Deep documentation lives in the repo folders. Students update via pull request or a designated web team.
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card" id="tracks">
+        <div class="cardHead">
+          <div>
+            <h2>Competition Tracks (choose 1)</h2>
+            <p>Each track maps to a preferred kit ecosystem. Teams will form around track + skill coverage.</p>
+          </div>
+        </div>
+        <div class="cardBody">
+          <div class="bento">
+            <div class="tile">
+              <h3>1) Automated Pick-and-Place Sorting Cell</h3>
+              <p>Detect objects and sort into bins using sensors, precise motion, and sequencing logic.</p>
+              <div class="tagRow">
+                <span class="tag">best: VEX_V5</span><span class="tag">alt: REV</span><span class="tag">alt: goBILDA</span>
+              </div>
+            </div>
+            <div class="tile">
+              <h3>2) Automated Assembly Line Simulation</h3>
+              <p>Multi-stage process: detect -> process -> verify -> output. Interlocks, stations, and workflow timing.</p>
+              <div class="tagRow">
+                <span class="tag">best: TETRIX</span><span class="tag">alt: VEX_V5</span>
+              </div>
+            </div>
+            <div class="tile">
+              <h3>3) Smart Warehouse Automation System</h3>
+              <p>Autonomous navigation and delivery between zones using routing logic and sensor feedback.</p>
+              <div class="tagRow">
+                <span class="tag">best: REV</span><span class="tag">alt: goBILDA</span>
+              </div>
+            </div>
+            <div class="tile">
+              <h3>4) Industrial Quality Control & Inspection Station</h3>
+              <p>Inspect products with thresholds and decision logic; reject defective items and log results.</p>
+              <div class="tagRow">
+                <span class="tag">best: VEX_V5</span><span class="tag">alt: mBot2</span>
+              </div>
+            </div>
+            <div class="tile">
+              <h3>5) Automated Material Handling & Palletizing</h3>
+              <p>Grid-based stacking with row/column indexing and repeatable placement accuracy.</p>
+              <div class="tagRow">
+                <span class="tag">best: goBILDA</span><span class="tag">alt: VEX_V5</span>
+              </div>
+            </div>
+            <div class="tile">
+              <h3>Team expectations</h3>
+              <p>Each team covers: mechanical, electrical/sensors, programming/logic, documentation/testing.</p>
+              <div class="tagRow">
+                <span class="tag">3-4 students</span><span class="tag">weekly deliverables</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card" id="kits">
+        <div class="cardHead">
+          <div>
+            <h2>Kit Ecosystems</h2>
+            <p>Students pay into the chosen platform. Prioritize durability, expandability, and documentation.</p>
+          </div>
+        </div>
+        <div class="cardBody">
+          <div class="timeline" style="gap:12px">
+            <div class="mile">
+              <div class="date">VEX V5</div>
+              <div class="txt">
+                <h4>Precision motion + strong sensors</h4>
+                <p>Best overall for pick-and-place and inspection stations.</p>
+              </div>
+            </div>
+            <div class="mile">
+              <div class="date">REV (FTC)</div>
+              <div class="txt">
+                <h4>Modern ecosystem for autonomous work</h4>
+                <p>Best fit for smart warehouse routing and navigation builds.</p>
+              </div>
+            </div>
+            <div class="mile">
+              <div class="date">goBILDA</div>
+              <div class="txt">
+                <h4>Heavy-duty metal structure</h4>
+                <p>Best for palletizing, lift mechanisms, and repeatable stacking builds.</p>
+              </div>
+            </div>
+            <div class="mile">
+              <div class="date">TETRIX MAX</div>
+              <div class="txt">
+                <h4>Clean education-style modular builds</h4>
+                <p>Strong for multi-station assembly line simulation setups.</p>
+              </div>
+            </div>
+            <div class="mile">
+              <div class="date">Makeblock mBot2</div>
+              <div class="txt">
+                <h4>Affordable entry platform</h4>
+                <p>Best as a lower-cost path for inspection/automation basics.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card" id="timeline" style="margin-top:14px">
+      <div class="cardHead">
+        <div>
+          <h2>Timeline (public milestones)</h2>
+          <p>Update this weekly. Keep it short: what we did, what’s next, and what’s due.</p>
+        </div>
+        <a class="smallLink" href="#top">Back to top</a>
+      </div>
+      <div class="cardBody">
+        <div class="timeline">
+          <div class="mile">
+            <div class="date">Week 1-2<br>Now</div>
+            <div class="txt">
+              <h4>Student interest + team formation</h4>
+              <p>Collect track + kit preferences, build balanced teams, assign roles, and publish roster.</p>
+            </div>
+          </div>
+          <div class="mile">
+            <div class="date">Week 3-4</div>
+            <div class="txt">
+              <h4>Kit purchase + basic build complete</h4>
+              <p>Base chassis or workstation frame built. Sensor plan locked. First movement test achieved.</p>
+            </div>
+          </div>
+          <div class="mile">
+            <div class="date">Week 5-7</div>
+            <div class="txt">
+              <h4>Automation logic + sensor integration</h4>
+              <p>Stable state-machine sequence. Calibrated sensors. Repeatable cycles with fewer errors.</p>
+            </div>
+          </div>
+          <div class="mile">
+            <div class="date">Week 8-10</div>
+            <div class="txt">
+              <h4>Performance tuning + documentation</h4>
+              <p>Cycle-time optimization, reliability testing, clean wiring, and build notebook finalized.</p>
+            </div>
+          </div>
+          <div class="mile">
+            <div class="date">Week 11-12</div>
+            <div class="txt">
+              <h4>Mock competition runs</h4>
+              <p>Timed runs, scoring practice, presentation polish, and contingency plans.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        Maintained by the Robotics & Automation Web Team. Updates tracked via <code>git commits</code>.
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="smallLink" href="#" id="repoLink">Repo link (set)</a>
+        <a class="smallLink" href="#" id="docLink">Documentation folder (set)</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Optional: set these links once and forget.
+    // Replace the # with your real URLs.
+    document.getElementById("interestFormLink").href = "#";
+    document.getElementById("repoLink").href = "#";
+    document.getElementById("docLink").href = "#";
+  </script>
+</body>
+</html>
