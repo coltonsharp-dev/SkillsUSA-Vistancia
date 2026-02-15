@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-  
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -79,6 +78,10 @@
     .btnPrimary{
       background:linear-gradient(180deg, rgba(122,167,255,.28), rgba(122,167,255,.14));
       border-color:rgba(122,167,255,.42);
+    }
+    .btnAdmin{
+      background:linear-gradient(180deg, rgba(110,243,197,.18), rgba(110,243,197,.08));
+      border-color:rgba(110,243,197,.35);
     }
     .meta{
       position:relative;z-index:1;
@@ -180,10 +183,12 @@
     }
     footer code{font-family:var(--mono);color:rgba(233,238,252,.78)}
     .smallLink{border:1px solid rgba(255,255,255,.12);padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04)}
+    .footLinks{display:flex;gap:10px;flex-wrap:wrap}
   </style>
 </head>
+
 <body>
-  <div class="wrap">
+  <div class="wrap" id="top">
     <header>
       <div class="hero">
         <div class="eyebrow">SkillsUSA Robotics & Automation Technology | Season Hub</div>
@@ -192,10 +197,18 @@
           One public timeline, one source of truth. Teams, kits, tracks, weekly milestones, and deliverables leading to competition day.
         </p>
         <div class="ctaRow">
-          <a class="btn btnPrimary" href="#" id="interestFormLink">Student Interest Form (link soon)</a>
+          <a class="btn btnPrimary"
+             href="https://docs.google.com/forms/d/1tGkBbyylYVS4-wmj9cs_T2N0wDCmW5zNqQ6SedEzjuI/edit"
+             target="_blank" rel="noopener noreferrer"
+             id="interestFormLink">Student Interest Form</a>
+
           <a class="btn" href="#timeline">Timeline</a>
           <a class="btn" href="#tracks">Competition Tracks</a>
           <a class="btn" href="#kits">Kit Ecosystems</a>
+
+          <a class="btn btnAdmin"
+             href="AdminRootOnly/index.html"
+             id="adminLink">Admin View</a>
         </div>
       </div>
 
@@ -241,6 +254,7 @@
                 <span class="tag">best: VEX_V5</span><span class="tag">alt: REV</span><span class="tag">alt: goBILDA</span>
               </div>
             </div>
+
             <div class="tile">
               <h3>2) Automated Assembly Line Simulation</h3>
               <p>Multi-stage process: detect -> process -> verify -> output. Interlocks, stations, and workflow timing.</p>
@@ -248,6 +262,7 @@
                 <span class="tag">best: TETRIX</span><span class="tag">alt: VEX_V5</span>
               </div>
             </div>
+
             <div class="tile">
               <h3>3) Smart Warehouse Automation System</h3>
               <p>Autonomous navigation and delivery between zones using routing logic and sensor feedback.</p>
@@ -255,6 +270,7 @@
                 <span class="tag">best: REV</span><span class="tag">alt: goBILDA</span>
               </div>
             </div>
+
             <div class="tile">
               <h3>4) Industrial Quality Control & Inspection Station</h3>
               <p>Inspect products with thresholds and decision logic; reject defective items and log results.</p>
@@ -262,6 +278,7 @@
                 <span class="tag">best: VEX_V5</span><span class="tag">alt: mBot2</span>
               </div>
             </div>
+
             <div class="tile">
               <h3>5) Automated Material Handling & Palletizing</h3>
               <p>Grid-based stacking with row/column indexing and repeatable placement accuracy.</p>
@@ -269,6 +286,7 @@
                 <span class="tag">best: goBILDA</span><span class="tag">alt: VEX_V5</span>
               </div>
             </div>
+
             <div class="tile">
               <h3>Team expectations</h3>
               <p>Each team covers: mechanical, electrical/sensors, programming/logic, documentation/testing.</p>
@@ -276,6 +294,7 @@
                 <span class="tag">3-4 students</span><span class="tag">weekly deliverables</span>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -289,6 +308,7 @@
         </div>
         <div class="cardBody">
           <div class="timeline" style="gap:12px">
+
             <div class="mile">
               <div class="date">VEX V5</div>
               <div class="txt">
@@ -296,6 +316,7 @@
                 <p>Best overall for pick-and-place and inspection stations.</p>
               </div>
             </div>
+
             <div class="mile">
               <div class="date">REV (FTC)</div>
               <div class="txt">
@@ -303,6 +324,7 @@
                 <p>Best fit for smart warehouse routing and navigation builds.</p>
               </div>
             </div>
+
             <div class="mile">
               <div class="date">goBILDA</div>
               <div class="txt">
@@ -310,6 +332,7 @@
                 <p>Best for palletizing, lift mechanisms, and repeatable stacking builds.</p>
               </div>
             </div>
+
             <div class="mile">
               <div class="date">TETRIX MAX</div>
               <div class="txt">
@@ -317,6 +340,7 @@
                 <p>Strong for multi-station assembly line simulation setups.</p>
               </div>
             </div>
+
             <div class="mile">
               <div class="date">Makeblock mBot2</div>
               <div class="txt">
@@ -324,6 +348,7 @@
                 <p>Best as a lower-cost path for inspection/automation basics.</p>
               </div>
             </div>
+
           </div>
         </div>
       </aside>
@@ -339,6 +364,7 @@
       </div>
       <div class="cardBody">
         <div class="timeline">
+
           <div class="mile">
             <div class="date">Week 1-2<br>Now</div>
             <div class="txt">
@@ -346,6 +372,7 @@
               <p>Collect track + kit preferences, build balanced teams, assign roles, and publish roster.</p>
             </div>
           </div>
+
           <div class="mile">
             <div class="date">Week 3-4</div>
             <div class="txt">
@@ -353,6 +380,7 @@
               <p>Base chassis or workstation frame built. Sensor plan locked. First movement test achieved.</p>
             </div>
           </div>
+
           <div class="mile">
             <div class="date">Week 5-7</div>
             <div class="txt">
@@ -360,6 +388,7 @@
               <p>Stable state-machine sequence. Calibrated sensors. Repeatable cycles with fewer errors.</p>
             </div>
           </div>
+
           <div class="mile">
             <div class="date">Week 8-10</div>
             <div class="txt">
@@ -367,6 +396,7 @@
               <p>Cycle-time optimization, reliability testing, clean wiring, and build notebook finalized.</p>
             </div>
           </div>
+
           <div class="mile">
             <div class="date">Week 11-12</div>
             <div class="txt">
@@ -374,6 +404,7 @@
               <p>Timed runs, scoring practice, presentation polish, and contingency plans.</p>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -382,19 +413,21 @@
       <div>
         Maintained by the Robotics & Automation Web Team. Updates tracked via <code>git commits</code>.
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="smallLink" href="AdminRootOnly/index.html" id="repoLink">Repo link (set)</a>
-        <a class="smallLink" href="#" id="docLink">Documentation folder (set)</a>
+
+      <div class="footLinks">
+        <a class="smallLink"
+           href="https://github.com/coltonsharp-dev/SkillsUSA-Vistancia"
+           target="_blank" rel="noopener noreferrer"
+           id="repoLink">GitHub Repo</a>
+
+        <a class="smallLink"
+           href="https://github.com/coltonsharp-dev/SkillsUSA-Vistancia/tree/main/Document"
+           target="_blank" rel="noopener noreferrer"
+           id="docLink">Documentation Folder</a>
       </div>
     </footer>
   </div>
 
-  <script>
-    // Optional: set these links once and forget.
-    // Replace the # with your real URLs.
-    document.getElementById("interestFormLink").href = "#";
-    document.getElementById("repoLink").href = "#";
-    document.getElementById("docLink").href = "#";
-  </script>
+  <!-- No JS overrides. Links above are final. -->
 </body>
 </html>
