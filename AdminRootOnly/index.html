@@ -1,0 +1,107 @@
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="kicker">SkillsUSA Robotics / Automation</div>
+      <h1>Vistancia Program Hub</h1>
+      <p class="sub">Timeline, teams, stations, and live resources — fast access, no noise.</p>
+    </div>
+    <div class="pillrow">
+      <span class="pill">Season: 2026</span>
+      <span class="pill ok">Status: Active</span>
+      <span class="pill mono">Repo: SkillsUSA-Vistancia</span>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card span2">
+      <div class="cardHead">
+        <h2>Today’s Mission</h2>
+        <span class="tag mono">P1</span>
+      </div>
+      <ol class="steps">
+        <li>Check station readiness + hardware inventory</li>
+        <li>Confirm teams + role assignments</li>
+        <li>Run timed build + test cycle</li>
+        <li>Log issues + update timeline</li>
+      </ol>
+      <div class="actions">
+        <a class="btn primary" href="#timeline">Open Timeline</a>
+        <a class="btn" href="#teams">View Teams</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <h2>Quick Links</h2>
+        <span class="tag mono">NAV</span>
+      </div>
+      <div class="linklist">
+        <a class="link" href="#resources"><span>Resources</span><span class="mono">/docs</span></a>
+        <a class="link" href="#kits"><span>Robot Kits</span><span class="mono">/kits</span></a>
+        <a class="link" href="#rubrics"><span>Rubrics</span><span class="mono">/rubrics</span></a>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <h2>Live Status</h2>
+        <span class="tag mono">OPS</span>
+      </div>
+      <div class="status">
+        <div class="stat">
+          <div class="label">Teams</div>
+          <div class="value">8</div>
+        </div>
+        <div class="stat">
+          <div class="label">Stations</div>
+          <div class="value">4</div>
+        </div>
+        <div class="stat">
+          <div class="label">Next Milestone</div>
+          <div class="value mono">Wk 3 Checkpoint</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="card span3">
+      <div class="cardHead">
+        <h2>Timeline</h2>
+        <span class="tag mono">GANTT</span>
+      </div>
+
+      <div class="timeline">
+        <div class="tRow">
+          <div class="tMeta">
+            <div class="tTitle">Kickoff + Team Assignments</div>
+            <div class="tSub mono">Week 1</div>
+          </div>
+          <div class="tBar"><span style="--w: 22%"></span></div>
+        </div>
+
+        <div class="tRow">
+          <div class="tMeta">
+            <div class="tTitle">Station Build + Integration</div>
+            <div class="tSub mono">Week 2–3</div>
+          </div>
+          <div class="tBar"><span style="--w: 52%"></span></div>
+        </div>
+
+        <div class="tRow">
+          <div class="tMeta">
+            <div class="tTitle">Timed Runs + Debug</div>
+            <div class="tSub mono">Week 4</div>
+          </div>
+          <div class="tBar"><span style="--w: 78%"></span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot mono">
+    Last updated: <span id="stamp"></span>
+  </footer>
+</div>
+
+<script>
+  document.getElementById("stamp").textContent = new Date().toLocaleString();
+</script>
