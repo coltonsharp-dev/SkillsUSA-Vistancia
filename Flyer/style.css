@@ -456,12 +456,3 @@ small {
 }
 
 
-
-/* Crop bottom 10% */
-.poster-frame img {
-
-
-  /* Key part 👇 */
-  transform: scale(1.1);        /* zoom in slightly */
-  transform-origin: top center; /* anchor from top so bottom gets cropped */
-}
