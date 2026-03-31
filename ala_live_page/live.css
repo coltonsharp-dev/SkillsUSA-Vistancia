@@ -64,3 +64,101 @@ canvas#particleCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;po
 @keyframes floatB{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-8vw,-5vh,0)}}
 @media (max-width:1080px){.hero-panel,.lower-grid{grid-template-columns:1fr}.hero-orbital{order:-1}.orb-shell{width:min(70vw,420px)}}
 @media (max-width:760px){.live-shell{width:min(100% - 18px,1240px);padding-top:18px}.topbar,.hero-panel,.glass-card{padding-left:18px;padding-right:18px}.topbar{flex-direction:column;align-items:flex-start}.stats-row,.count-grid{grid-template-columns:1fr 1fr}.hero-copy h1{font-size:clamp(2.8rem,15vw,4.8rem)}.cta{width:100%}}
+
+
+
+
+
+/* ===== CIRCULAR NEON LOGO ===== */
+
+.logo-badge.logo-badge--circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+/* Main circle container */
+.logo-badge--circle .logo-circle {
+  position: relative;
+  width: clamp(75px, 6vw, 80px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 14, 30, 0.7);
+  border: 1px solid rgba(120, 220, 255, 0.35);
+
+  box-shadow:
+    0 0 10px rgba(0,255,255,0.15),
+    0 0 25px rgba(0,120,255,0.12),
+    inset 0 0 12px rgba(255,255,255,0.05);
+
+  backdrop-filter: blur(6px);
+}
+
+/* Rotating neon ring */
+.logo-badge--circle .logo-circle__ring {
+  position: absolute;
+  inset: -15%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(0,255,255,0.0) 20deg,
+    rgba(0,255,255,0.9) 60deg,
+    rgba(0,153,255,0.0) 90deg,
+    transparent 140deg,
+    transparent 220deg,
+    rgba(140,0,255,0.6) 260deg,
+    transparent 300deg,
+    transparent 360deg
+  );
+  filter: blur(12px);
+  opacity: 0.7;
+  animation: logoSpin 6s linear infinite;
+  pointer-events: none;
+}
+
+/* Ambient glow */
+.logo-badge--circle .logo-circle__glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0,255,255,0.3), transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(140,0,255,0.25), transparent 45%);
+  filter: blur(10px);
+  animation: logoPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Logo image */
+.logo-badge--circle .logo-circle__image {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.02);
+}
+
+/* Animations */
+@keyframes logoSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
