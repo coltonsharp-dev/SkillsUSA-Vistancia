@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Robot Voice Worksheet — SkillsUSA</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    background: #0a0e1a;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #e0eaff;
+    padding-bottom: 80px;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0d1b3e 0%, #112244 50%, #0a1628 100%);
+    border-bottom: 2px solid #00c8ff33;
+    padding: 36px 24px 28px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 40px #00c8ff22;
+  }
+  .header-tag { font-size: 13px; letter-spacing: 4px; color: #00c8ff; text-transform: uppercase; margin-bottom: 6px; font-weight: 700; }
+  .header-title { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header-sub { font-size: 14px; color: #7090b0; margin-bottom: 20px; }
+  .progress-wrap { max-width: 400px; margin: 0 auto; }
+  .progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: #5080a0; margin-bottom: 6px; }
+  .progress-pct { color: #00c8ff; }
+  .progress-track { height: 6px; background: #ffffff10; border-radius: 99px; overflow: hidden; }
+  .progress-bar {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, #0080ff, #00c8ff);
+    box-shadow: 0 0 12px #00c8ff88;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* MAIN */
+  .main { max-width: 720px; margin: 0 auto; padding: 32px 20px 0; }
+
+  .intro-box {
+    background: #ffffff08;
+    border: 1px solid #00c8ff22;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: #8aabcc;
+    line-height: 1.7;
+  }
+  .intro-box strong { color: #00c8ff; }
+  .intro-box .green { color: #00ff88; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 32px; }
+  .section-tag-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+  .section-tag {
+    background: var(--c22);
+    border: 1px solid var(--c44);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--c);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .section-line { flex: 1; height: 1px; background: var(--c22); }
+  .section-title { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 4px; letter-spacing: -0.3px; }
+  .section-subtitle { font-size: 13px; color: #5080a0; margin-bottom: 20px; }
+  .section-body {
+    background: #ffffff05;
+    border: 1px solid var(--c22);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* FIELDS */
+  .field-label { display: block; font-size: 12px; font-weight: 700; color: #7090b0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .field-label-big { display: block; font-size: 13px; font-weight: 700; color: #c0d0e8; margin-bottom: 4px; }
+  .hint { font-size: 12px; color: #4a6a80; margin-bottom: 8px; font-style: italic; line-height: 1.5; }
+
+  input[type="text"], textarea {
+    width: 100%;
+    background: #ffffff08;
+    border: 1.5px solid #ffffff15;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #e0eaff;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    line-height: 1.6;
+  }
+  input[type="text"]:focus, textarea:focus { border-color: var(--c, #00c8ff); }
+  textarea { resize: vertical; }
+
+  .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .row .field-wrap { flex: 1; min-width: 180px; }
+
+  /* CHECKBOXES */
+  .check-label { font-size: 13px; font-weight: 700; color: #c0d0e8; margin-bottom: 10px; display: block; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    padding: 7px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1.5px solid #ffffff18;
+    background: transparent;
+    color: #607080;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .chip.on {
+    border-color: var(--c);
+    background: var(--c22);
+    color: var(--c);
+    font-weight: 700;
+    box-shadow: 0 0 10px var(--c44);
+  }
+
+  /* PHRASES */
+  .phrases { display: flex; gap: 10px; flex-wrap: wrap; }
+  .phrases input { flex: 1; min-width: 140px; }
+
+  /* SUBMIT */
+  .submit-box {
+    margin-top: 40px;
+    background: linear-gradient(135deg, #0d1b3e, #112244);
+    border: 1px solid #00c8ff33;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .submit-status { font-size: 15px; color: #8aabcc; margin-bottom: 6px; }
+  .submit-email { font-size: 13px; color: #4a6080; margin-bottom: 24px; }
+  .submit-email span { color: #00c8ff; }
+  .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+  button.btn {
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  button.btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  button.btn:active { transform: translateY(0); }
+  .btn-copy { background: #334466; color: #e0eaff; }
+  .btn-copy.done { background: #00ff88; color: #001a0d; }
+  .btn-email { background: #00c8ff; color: #001428; }
+  .submit-note { font-size: 12px; color: #3a5060; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">SkillsUSA Robot Project</div>
+  <div class="header-title">🤖 Robot Voice Worksheet</div>
+  <div class="header-sub">Your words. Your voice. Your robot.</div>
+  <div class="progress-wrap">
+    <div class="progress-labels">
+      <span>Completion</span>
+      <span class="progress-pct" id="pct-label">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="intro-box">
+    <strong>Hey! 👋</strong> Fill this out and your robot will literally speak in your voice. Be real, be you — no wrong answers. When you're done, hit the <span class="green"><strong>Email to Teacher</strong></span> button to submit it.
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section" style="--c:#00c8ff; --c22:#00c8ff22; --c44:#00c8ff44;">
+    <div class="section-tag-row">
+      <div class="section-tag">👤 Section 1</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">Who Are You?</div>
+    <div class="section-body">
+      <div class="row">
+        <div class="field-wrap">
+          <label class="field-label">Your Name *</label>
+          <input type="text" id="name" placeholder="First & Last" oninput="updateProgress()" />
+        </div>
+        <div class="field-wrap">
+          <label class="field-label">Nickname (if any)</label>
+          <input type="text" id="nickname" placeholder="What do friends call you?" />
+        </div>
+      </div>
+      <div>
+        <label class="field-label">Grade</label>
+        <input type="text" id="grade" placeholder="9th, 10th, 11th, 12th..." style="max-width:220px" />
+      </div>
+      <div>
+        <span class="check-label">Your Role on This Project (select all that apply)</span>
+        <div class="chips" id="roles">
+          <button class="chip" onclick="toggleChip(this)">Builder / Fabricator</button>
+          <button class="chip" onclick="toggleChip(this)">Programmer / Coder</button>
+          <button class="chip" onclick="toggleChip(this)">Designer / Planner</button>
+          <button class="chip" onclick="toggleChip(this)">Team Captain</button>
+          <button class="chip" onclick="toggleChip(this)">Presenter / Speaker</button>
+          <button class="chip" onclick="toggleChip(this)">Problem Solver</button>
+          <button class="chip" onclick="toggleChip(this)">A Little of Everything</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" style="--c:#a78bfa; --c22:#a78bfa22; --c44:#a78bfa44;">
+    <div class="section-tag-row">
+      <div class="section-tag">🎤 Section 2</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">Your Intro Lines</div>
+    <div class="section-body">
+      <div>
+        <label class="field-label-big">If you had 10 seconds to introduce yourself to the judges, what would you say?</label>
+        <div class="hint">Write it exactly how you'd actually say it — slang, filler words, all of it. Example: "Hey, I'm Marcus, I handle all the wiring on this thing and honestly it was a nightmare but we made it work."</div>
+        <textarea id="selfIntro" rows="4" oninput="updateProgress()"></textarea>
+      </div>
+      <div>
+        <label class="field-label-big">How would you introduce YOUR robot to someone who's never seen it?</label>
+        <div class="hint">Pretend you're hyping it up to a friend. What's the very first thing you'd say?</div>
+        <textarea id="robotIntro" rows="4" oninput="updateProgress()"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" style="--c:#fb923c; --c22:#fb923c22; --c44:#fb923c44;">
+    <div class="section-tag-row">
+      <div class="section-tag">🔊 Section 3</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">The Robot's Script Lines</div>
+    <div class="section-subtitle">These will be recorded as actual audio — write them in YOUR natural voice.</div>
+    <div class="section-body">
+      <div>
+        <label class="field-label-big">Line 1 — The Robot's Self-Introduction</label>
+        <div class="hint">What does the robot say when it "wakes up" or greets the crowd? Write it FOR the robot, but in your style.</div>
+        <textarea id="line1" rows="3" oninput="updateProgress()"></textarea>
+      </div>
+      <div>
+        <label class="field-label-big">Line 2 — Describing What the Robot Does</label>
+        <div class="hint">Explain the main function. Conversational — how would you describe it to your little cousin?</div>
+        <textarea id="line2" rows="3" oninput="updateProgress()"></textarea>
+      </div>
+      <div>
+        <label class="field-label-big">Line 3 — Something Cool or Surprising About It</label>
+        <div class="hint">What makes people go "wait, really?!" Write it like the robot is low-key bragging.</div>
+        <textarea id="line3" rows="3" oninput="updateProgress()"></textarea>
+      </div>
+      <div>
+        <label class="field-label-big">Line 4 — A Shoutout or Closing Line</label>
+        <div class="hint">Team thanks, a hype line, a joke, a mic-drop moment — make it memorable.</div>
+        <textarea id="line4" rows="3" oninput="updateProgress()"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" style="--c:#34d399; --c22:#34d39922; --c44:#34d39944;">
+    <div class="section-tag-row">
+      <div class="section-tag">✨ Section 4</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">Your Personality & Style</div>
+    <div class="section-body">
+      <div>
+        <span class="check-label">How would your friends describe the way you talk?</span>
+        <div class="chips">
+          <button class="chip" onclick="toggleChip(this)">Loud & hyped</button>
+          <button class="chip" onclick="toggleChip(this)">Calm & chill</button>
+          <button class="chip" onclick="toggleChip(this)">Funny & sarcastic</button>
+          <button class="chip" onclick="toggleChip(this)">Serious & focused</button>
+          <button class="chip" onclick="toggleChip(this)">Fast talker</button>
+          <button class="chip" onclick="toggleChip(this)">Slow & deliberate</button>
+          <button class="chip" onclick="toggleChip(this)">Somewhere in the middle</button>
+        </div>
+      </div>
+      <div>
+        <span class="check-label">Your vibe when presenting:</span>
+        <div class="chips">
+          <button class="chip" onclick="toggleChip(this)">Super confident</button>
+          <button class="chip" onclick="toggleChip(this)">Nervous but push through</button>
+          <button class="chip" onclick="toggleChip(this)">Go with the flow</button>
+          <button class="chip" onclick="toggleChip(this)">Prefer the background</button>
+        </div>
+      </div>
+      <div>
+        <span class="check-label">Your 3 Go-To Expressions</span>
+        <div class="hint">Words or phrases you say ALL the time. E.g. "no cap", "for real though", "honestly", "lowkey"</div>
+        <div class="phrases">
+          <input type="text" id="phrase1" placeholder="Phrase 1..." />
+          <input type="text" id="phrase2" placeholder="Phrase 2..." />
+          <input type="text" id="phrase3" placeholder="Phrase 3..." />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" style="--c:#f472b6; --c22:#f472b622; --c44:#f472b644;">
+    <div class="section-tag-row">
+      <div class="section-tag">🎉 Section 5</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">The Fun Stuff</div>
+    <div class="section-body">
+      <div>
+        <label class="field-label-big">If your robot had a catchphrase, what would it be?</label>
+        <div class="hint">Funny, dramatic, nerdy — whatever fits. Could even be a team motto!</div>
+        <textarea id="catchphrase" rows="2" oninput="updateProgress()"></textarea>
+      </div>
+      <div>
+        <label class="field-label-big">Anything you DON'T want the robot to say?</label>
+        <div class="hint">Inside jokes to avoid, anything embarrassing, topics to skip.</div>
+        <textarea id="avoid" rows="2"></textarea>
+      </div>
+      <div>
+        <label class="field-label-big">Any last thoughts or requests?</label>
+        <div class="hint">Anything else we should know before recording your audio?</div>
+        <textarea id="lastThoughts" rows="2"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-box">
+    <div class="submit-status" id="submit-status">Fill out the required fields above, then submit!</div>
+    <div class="submit-email">Submitting to: <span>Colton.Sharp@alaschools.org</span></div>
+    <div class="btn-row">
+      <button class="btn btn-copy" id="copy-btn" onclick="handleCopy()">📋 Copy to Clipboard</button>
+      <button class="btn btn-email" onclick="handleEmail()">📧 Email to Teacher</button>
+    </div>
+    <div class="submit-note">Email opens your mail app with everything filled in — just hit send!</div>
+  </div>
+
+</div>
+
+<script>
+  const TEACHER_EMAIL = "Colton.Sharp@alaschools.org";
+
+  function toggleChip(el) {
+    el.classList.toggle("on");
+  }
+
+  function getChips(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+      // search all chip groups by iterating
+    }
+    return [];
+  }
+
+  function getAllSelectedChips(sectionEl) {
+    return [...sectionEl.querySelectorAll(".chip.on")].map(c => c.textContent).join(", ");
+  }
+
+  function val(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+  }
+
+  function buildSummary() {
+    const sections = document.querySelectorAll(".section");
+    const roleChips = [...sections[0].querySelectorAll(".chip.on")].map(c => c.textContent).join(", ") || "(none selected)";
+    const talkChips = [...sections[3].querySelectorAll(".chips")[0].querySelectorAll(".chip.on")].map(c => c.textContent).join(", ") || "(none selected)";
+    const vibeChips = [...sections[3].querySelectorAll(".chips")[1].querySelectorAll(".chip.on")].map(c => c.textContent).join(", ") || "(none selected)";
+
+    return `
+🤖 ROBOT VOICE WORKSHEET — SkillsUSA
+=====================================
+
+👤 SECTION 1: WHO ARE YOU?
+Name: ${val("name") || "(blank)"}
+Nickname: ${val("nickname") || "(blank)"}
+Grade: ${val("grade") || "(blank)"}
+Role on Project: ${roleChips}
+
+🎤 SECTION 2: YOUR INTRO LINES
+Self-Introduction:
+${val("selfIntro") || "(blank)"}
+
+Robot Introduction:
+${val("robotIntro") || "(blank)"}
+
+🔊 SECTION 3: THE ROBOT'S SCRIPT LINES
+Line 1 — Robot Self-Introduction:
+${val("line1") || "(blank)"}
+
+Line 2 — What the Robot Does:
+${val("line2") || "(blank)"}
+
+Line 3 — Something Cool/Surprising:
+${val("line3") || "(blank)"}
+
+Line 4 — Shoutout / Closing Line:
+${val("line4") || "(blank)"}
+
+✨ SECTION 4: PERSONALITY & STYLE
+Talk Style: ${talkChips}
+Presenting Vibe: ${vibeChips}
+Go-To Phrases: "${val("phrase1") || "(blank)"}" | "${val("phrase2") || "(blank)"}" | "${val("phrase3") || "(blank)"}"
+
+🎉 SECTION 5: THE FUN STUFF
+Robot Catchphrase:
+${val("catchphrase") || "(blank)"}
+
+Things to Avoid:
+${val("avoid") || "(blank)"}
+
+Last Thoughts:
+${val("lastThoughts") || "(blank)"}
+`.trim();
+  }
+
+  function updateProgress() {
+    const fields = ["name","selfIntro","robotIntro","line1","line2","line3","line4","catchphrase"];
+    const filled = fields.filter(id => val(id).length > 0).length;
+    const pct = Math.round((filled / fields.length) * 100);
+    document.getElementById("progress-bar").style.width = pct + "%";
+    document.getElementById("pct-label").textContent = pct + "%";
+    const statusEl = document.getElementById("submit-status");
+    if (pct === 100) {
+      statusEl.textContent = "✅ Looking good! Ready to submit?";
+      document.getElementById("pct-label").style.color = "#00ff88";
+      document.getElementById("progress-bar").style.background = "linear-gradient(90deg, #00ff88, #00c8ff)";
+    } else {
+      statusEl.textContent = `Almost there — ${100 - pct}% left to complete!`;
+    }
+  }
+
+  function handleCopy() {
+    const btn = document.getElementById("copy-btn");
+    navigator.clipboard.writeText(buildSummary()).then(() => {
+      btn.textContent = "✅ Copied!";
+      btn.classList.add("done");
+      setTimeout(() => {
+        btn.textContent = "📋 Copy to Clipboard";
+        btn.classList.remove("done");
+      }, 2500);
+    });
+  }
+
+  function handleEmail() {
+    const name = val("name") || "Student";
+    const subject = encodeURIComponent(`SkillsUSA Robot Voice Worksheet — ${name}`);
+    const body = encodeURIComponent(buildSummary());
+    window.open(`mailto:${TEACHER_EMAIL}?subject=${subject}&body=${body}`);
+  }
+</script>
+</body>
+</html>
